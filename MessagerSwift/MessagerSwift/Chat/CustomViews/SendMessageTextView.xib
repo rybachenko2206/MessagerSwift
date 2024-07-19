@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SendMessageTextView" customModule="MessagerSwift" customModuleProvider="target">
+            <connections>
+                <outlet property="bubbleView" destination="EOB-we-CIM" id="O5a-HO-MSX"/>
+                <outlet property="messageTextView" destination="8eb-g2-hPS" id="PEW-uH-qjr"/>
+                <outlet property="placeholderLabel" destination="Ntt-RV-aga" id="DGa-u4-1NB"/>
+                <outlet property="sendImagesButton" destination="GMF-7r-1g9" id="WYQ-MT-Zrh"/>
+                <outlet property="sendMessageButton" destination="1zM-eT-4Kx" id="ChO-R2-W4Q"/>
+                <outlet property="view" destination="iN0-l3-epB" id="viK-5I-1jV"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="62"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zM-eT-4Kx">
+                    <rect key="frame" x="333" y="12" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="XJZ-XX-26y"/>
+                        <constraint firstAttribute="height" constant="40" id="fcO-AO-Efj"/>
+                    </constraints>
+                    <color key="tintColor" systemColor="systemGreenColor"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" cornerStyle="capsule">
+                        <imageReference key="image" image="paperplane.fill" catalog="system" symbolScale="medium"/>
+                        <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
+                    </buttonConfiguration>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMF-7r-1g9">
+                    <rect key="frame" x="0.0" y="12" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="lAD-hP-6nx"/>
+                        <constraint firstAttribute="height" constant="40" id="xfB-W1-lbT"/>
+                    </constraints>
+                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain">
+                        <imageReference key="image" image="paperclip" catalog="system" symbolScale="large"/>
+                    </buttonConfiguration>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EOB-we-CIM" userLabel="BubbleView">
+                    <rect key="frame" x="40" y="10" width="281" height="42"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8eb-g2-hPS">
+                            <rect key="frame" x="20" y="12" width="241" height="20"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" placeholder="YES" id="bEM-zd-nsm"/>
+                            </constraints>
+                            <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ntt-RV-aga" userLabel="PlaceholderLabel">
+                            <rect key="frame" x="20" y="12" width="241" height="18"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.6588235294117647" green="0.6588235294117647" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.89411764705882346" green="0.89411764705882346" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="8eb-g2-hPS" secondAttribute="bottom" constant="10" id="Fgh-vw-tRP"/>
+                        <constraint firstItem="Ntt-RV-aga" firstAttribute="centerY" secondItem="EOB-we-CIM" secondAttribute="centerY" id="GMB-Zi-uK6"/>
+                        <constraint firstItem="8eb-g2-hPS" firstAttribute="top" secondItem="EOB-we-CIM" secondAttribute="top" constant="12" id="KRa-Pg-FWX"/>
+                        <constraint firstAttribute="trailing" secondItem="Ntt-RV-aga" secondAttribute="trailing" constant="20" id="P8p-uc-rPD"/>
+                        <constraint firstItem="8eb-g2-hPS" firstAttribute="leading" secondItem="EOB-we-CIM" secondAttribute="leading" constant="20" id="Qc9-pV-iaB"/>
+                        <constraint firstItem="Ntt-RV-aga" firstAttribute="leading" secondItem="EOB-we-CIM" secondAttribute="leading" constant="20" id="cqT-zq-Z7d"/>
+                        <constraint firstAttribute="trailing" secondItem="8eb-g2-hPS" secondAttribute="trailing" constant="20" id="p4F-n9-x5T"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="EOB-we-CIM" firstAttribute="leading" secondItem="GMF-7r-1g9" secondAttribute="trailing" id="1Me-4C-Xfk"/>
+                <constraint firstItem="1zM-eT-4Kx" firstAttribute="leading" secondItem="EOB-we-CIM" secondAttribute="trailing" constant="12" id="Dug-Lk-yRS"/>
+                <constraint firstItem="GMF-7r-1g9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="M5G-kG-PCm"/>
+                <constraint firstAttribute="bottom" secondItem="EOB-we-CIM" secondAttribute="bottom" constant="10" id="SMe-eL-zLq"/>
+                <constraint firstAttribute="trailing" secondItem="1zM-eT-4Kx" secondAttribute="trailing" constant="20" id="Ty1-1p-Jod"/>
+                <constraint firstItem="GMF-7r-1g9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="dJ2-pf-8dI"/>
+                <constraint firstItem="EOB-we-CIM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="f1Z-Dx-x2C"/>
+                <constraint firstAttribute="bottom" secondItem="1zM-eT-4Kx" secondAttribute="bottom" constant="10" id="fYq-Co-Oss"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="38.931297709923662" y="75"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="paperclip" catalog="system" width="121" height="128"/>
+        <image name="paperplane.fill" catalog="system" width="128" height="119"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

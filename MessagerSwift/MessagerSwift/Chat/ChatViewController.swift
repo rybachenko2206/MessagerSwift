@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class ChatViewController: UIViewController, Storyboardable {
     // MARK: - Outlets
@@ -15,6 +16,7 @@ class ChatViewController: UIViewController, Storyboardable {
     @IBOutlet private weak var messageTextViewBottomConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
+    private var subscriptions: Set<AnyCancellable> = []
     static var storyboardName: Storyboard = .main
     var viewModel: PChatViewModel!
 
@@ -24,6 +26,7 @@ class ChatViewController: UIViewController, Storyboardable {
         
         setupUI()
         setupNotificationObservers()
+        setupBindings()
     }
 
     // MARK: - Private funcs
@@ -35,7 +38,7 @@ class ChatViewController: UIViewController, Storyboardable {
     
     private func setupMessageTextView() {
         messageTextView.sendMessageCompletion = { [weak self] message in
-            self?.handleSendMessage()
+            self?.viewModel.sendNewTextMessage(message)
         }
         
         messageTextView.viewHeightChangedCompletion = { [weak self] height in
@@ -54,13 +57,41 @@ class ChatViewController: UIViewController, Storyboardable {
         tableView.addGestureRecognizer(tapGR)
     }
     
-    private func handleSendMessage() {
-        
-    }
-    
     private func setupNotificationObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func setupBindings() {
+        viewModel.tableViewInsertRowsPublisher
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] indexPaths in
+                self?.insertRows(at: indexPaths)
+            })
+            .store(in: &subscriptions)
+        
+        viewModel.tableViewDeleteRowPublisher
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: { [weak self] indexPath in
+                self?.deleteRow(at: indexPath)
+            })
+            .store(in: &subscriptions)
+    }
+    
+    private func insertRows(at indexPaths: [IndexPath]) {
+        tableView.beginUpdates()
+        tableView.insertRows(at: indexPaths, with: .automatic)
+        tableView.endUpdates()
+        
+        if let lastIP = indexPaths.last {
+            tableView.scrollToRow(at: lastIP, at: .bottom, animated: true)
+        }
+    }
+    
+    private func deleteRow(at indexPath: IndexPath) {
+        tableView.beginUpdates()
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
     }
     
     // MARK: - Notification Observers

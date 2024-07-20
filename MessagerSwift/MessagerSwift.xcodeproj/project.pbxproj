@@ -29,6 +29,7 @@
 		05FC1C502C4BD89D00376EFD /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC1C4F2C4BD89C00376EFD /* ChatRoom.swift */; };
 		05FC1C522C4BD92E00376EFD /* ChatParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC1C512C4BD92E00376EFD /* ChatParticipant.swift */; };
 		05FC1C542C4C4DA300376EFD /* ChatMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC1C532C4C4DA300376EFD /* ChatMessageViewModel.swift */; };
+		05FC1C562C4C52FC00376EFD /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC1C552C4C52FC00376EFD /* String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		05FC1C4F2C4BD89C00376EFD /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		05FC1C512C4BD92E00376EFD /* ChatParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatParticipant.swift; sourceTree = "<group>"; };
 		05FC1C532C4C4DA300376EFD /* ChatMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageViewModel.swift; sourceTree = "<group>"; };
+		05FC1C552C4C52FC00376EFD /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,8 +146,9 @@
 				0524D9DF2C4ACE9900DD8541 /* UIView.swift */,
 				0524D9CB2C4AB68500DD8541 /* UICollectionView.swift */,
 				0524D9DA2C4AC83300DD8541 /* UITableView.swift */,
-				0524D9D32C4ABD9500DD8541 /* Array.swift */,
 				0524D9E92C4AF76500DD8541 /* UIDevice.swift */,
+				0524D9D32C4ABD9500DD8541 /* Array.swift */,
+				05FC1C552C4C52FC00376EFD /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05FC1C562C4C52FC00376EFD /* String.swift in Sources */,
 				0524D9D42C4ABD9500DD8541 /* Array.swift in Sources */,
 				0524D9CC2C4AB68500DD8541 /* UICollectionView.swift in Sources */,
 				0524D9E82C4AF3CF00DD8541 /* Storyboardable.swift in Sources */,

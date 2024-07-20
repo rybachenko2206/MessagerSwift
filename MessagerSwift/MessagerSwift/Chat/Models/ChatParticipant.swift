@@ -9,16 +9,18 @@ import Foundation
 import UIKit
 
 class ChatParticipant {
+    let participantId: String
     let name: String
     let avatarImage: UIImage? // in real project it would be let avatarImageUrl: URL? 
     
-    init(name: String, avatarImage: UIImage?) {
+    init(id: String, name: String, avatarImage: UIImage?) {
+        self.participantId = id
         self.name = name
         self.avatarImage = avatarImage
     }
 }
 
 extension ChatParticipant {
-    static let otherParticipant = ChatParticipant(name: "Jessica", avatarImage: UIImage(named: "Alba"))
-    static let myParticipant = ChatParticipant(name: "Fernando", avatarImage: UIImage(named: "Torres"))
+    static let otherParticipant = ChatParticipant(id: UUID().uuidString, name: "Jessica", avatarImage: UIImage(named: "Alba"))
+    static let myParticipant = ChatParticipant(id: UUID().uuidString, name: "Fernando", avatarImage: UIImage(named: "Torres"))
 }

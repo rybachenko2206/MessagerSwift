@@ -47,8 +47,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private func setupInitialViewController(with windowScene: UIWindowScene) {
         let window = UIWindow(windowScene: windowScene)
+        let chatService = ChatService()
         let chatVc = ChatViewController.instantiate()
-        chatVc.viewModel = ChatViewModel()
+        chatVc.viewModel = ChatViewModel(chatRoom: ChatRoom.testRoom, chatService: chatService)
         let navController = UINavigationController(rootViewController: chatVc)
         window.rootViewController = navController
         self.window = window

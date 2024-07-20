@@ -106,7 +106,7 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
         return viewModel.numberOfItems(in: section)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let messageItem = viewModel.messageItem(for: indexPath) else { return UITableViewCell() }
+        guard let messageVM = viewModel.messageViewModel(for: indexPath) else { return UITableViewCell() }
         
         return UITableViewCell()
     }

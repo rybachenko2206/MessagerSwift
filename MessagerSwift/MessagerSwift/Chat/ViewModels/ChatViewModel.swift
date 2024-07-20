@@ -10,12 +10,21 @@ import Foundation
 protocol PChatViewModel {
     func numberOfSections() -> Int
     func numberOfItems(in section: Int) -> Int
-    func messageItem(for indexPath: IndexPath) -> ChatMessage?
+    func messageViewModel(for indexPath: IndexPath) -> PChatMessageViewModel?
 }
 
 class ChatViewModel: PChatViewModel {
     // MARK: Properties
-    private var messages: [ChatMessage] = []
+    private let chatRoom: ChatRoom
+    private var messageViewModels: [PChatMessageViewModel] = []
+    
+    private let chatService: PChatService
+    
+    // MARK: - Init
+    init(chatRoom: ChatRoom, chatService: PChatService) {
+        self.chatRoom = chatRoom
+        self.chatService = chatService
+    }
     
     // MARK: - Public funcs
     func numberOfSections() -> Int {
@@ -23,10 +32,10 @@ class ChatViewModel: PChatViewModel {
     }
     
     func numberOfItems(in section: Int) -> Int {
-        messages.count
+        messageViewModels.count
     }
     
-    func messageItem(for indexPath: IndexPath) -> ChatMessage? {
-        messages[safe: indexPath.row]
+    func messageViewModel(for indexPath: IndexPath) -> PChatMessageViewModel? {
+        messageViewModels[safe: indexPath.row]
     }
 }

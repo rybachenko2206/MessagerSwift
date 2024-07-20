@@ -25,6 +25,10 @@
 		0524D9E22C4AD03E00DD8541 /* SendMessageTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0524D9E12C4AD03E00DD8541 /* SendMessageTextView.xib */; };
 		0524D9E82C4AF3CF00DD8541 /* Storyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524D9E72C4AF3CF00DD8541 /* Storyboardable.swift */; };
 		0524D9EA2C4AF76500DD8541 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524D9E92C4AF76500DD8541 /* UIDevice.swift */; };
+		05FC1C4E2C4BD64200376EFD /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC1C4D2C4BD64200376EFD /* ChatService.swift */; };
+		05FC1C502C4BD89D00376EFD /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC1C4F2C4BD89C00376EFD /* ChatRoom.swift */; };
+		05FC1C522C4BD92E00376EFD /* ChatParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC1C512C4BD92E00376EFD /* ChatParticipant.swift */; };
+		05FC1C542C4C4DA300376EFD /* ChatMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC1C532C4C4DA300376EFD /* ChatMessageViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,10 @@
 		0524D9E12C4AD03E00DD8541 /* SendMessageTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendMessageTextView.xib; sourceTree = "<group>"; };
 		0524D9E72C4AF3CF00DD8541 /* Storyboardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboardable.swift; sourceTree = "<group>"; };
 		0524D9E92C4AF76500DD8541 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
+		05FC1C4D2C4BD64200376EFD /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		05FC1C4F2C4BD89C00376EFD /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		05FC1C512C4BD92E00376EFD /* ChatParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatParticipant.swift; sourceTree = "<group>"; };
+		05FC1C532C4C4DA300376EFD /* ChatMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +91,7 @@
 				0524D9C32C4AAF7300DD8541 /* App */,
 				0524D9C52C4AB29E00DD8541 /* Protocols */,
 				0524D9CA2C4AB39700DD8541 /* Extensions */,
+				05FC1C4A2C4BD5B300376EFD /* Services */,
 				0524D9C42C4AAF9100DD8541 /* Chat */,
 				0524D9C22C4AAF5C00DD8541 /* Resources */,
 				0524D9BC2C4A8A7200DD8541 /* Info.plist */,
@@ -170,7 +179,9 @@
 		0524D9D62C4ABF0000DD8541 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				05FC1C4F2C4BD89C00376EFD /* ChatRoom.swift */,
 				0524D9D12C4ABD1300DD8541 /* ChatMessage.swift */,
+				05FC1C512C4BD92E00376EFD /* ChatParticipant.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -179,8 +190,17 @@
 			isa = PBXGroup;
 			children = (
 				0524D9CF2C4ABC9100DD8541 /* ChatViewModel.swift */,
+				05FC1C532C4C4DA300376EFD /* ChatMessageViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		05FC1C4A2C4BD5B300376EFD /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				05FC1C4D2C4BD64200376EFD /* ChatService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,10 +281,14 @@
 				0524D9D22C4ABD1300DD8541 /* ChatMessage.swift in Sources */,
 				0524D9D02C4ABC9100DD8541 /* ChatViewModel.swift in Sources */,
 				0524D9E02C4ACE9900DD8541 /* UIView.swift in Sources */,
+				05FC1C522C4BD92E00376EFD /* ChatParticipant.swift in Sources */,
 				0524D9C72C4AB2D500DD8541 /* ReusableCell.swift in Sources */,
+				05FC1C542C4C4DA300376EFD /* ChatMessageViewModel.swift in Sources */,
 				0524D9B32C4A8A7000DD8541 /* ChatViewController.swift in Sources */,
+				05FC1C4E2C4BD64200376EFD /* ChatService.swift in Sources */,
 				0524D9AF2C4A8A7000DD8541 /* AppDelegate.swift in Sources */,
 				0524D9DB2C4AC83300DD8541 /* UITableView.swift in Sources */,
+				05FC1C502C4BD89D00376EFD /* ChatRoom.swift in Sources */,
 				0524D9DE2C4ACBF400DD8541 /* SendMessageTextView.swift in Sources */,
 				0524D9C92C4AB35600DD8541 /* NibMakable.swift in Sources */,
 				0524D9B12C4A8A7000DD8541 /* SceneDelegate.swift in Sources */,

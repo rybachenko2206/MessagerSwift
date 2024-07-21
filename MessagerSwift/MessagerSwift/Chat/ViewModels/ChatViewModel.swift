@@ -86,17 +86,24 @@ class ChatViewModel: PChatViewModel {
         )
         
         chatService.sendMessage(chatMessage, to: chatRoom.roomId)
-        let msgViewModel = ChatMessageViewModel(message: chatMessage, myParticipantId: myParticipant.participantId)
-        messageViewModels.insert(msgViewModel, at: 0)
-        let ip = IndexPath(row: 0, section: 0)
-        tableViewInsertRowsSubject.send([ip])
     }
     
     private func setupBinings() {
         chatService.newMessagePublisher
             .sink(receiveValue: { [weak self] newMessage in
-                print("~~new message received: \n\(newMessage), date: \(newMessage.createdAt)")
+                self?.handleNewMessageReceived(newMessage)
             })
             .store(in: &subscriptions)
+    }
+    
+    private func handleNewMessageReceived(_ newMessage: ChatMessage) {
+        guard !messageViewModels.contains(where: { $0.messageId == newMessage.messageId }) else { return }
+        guard newMessage.roomId == chatRoom.roomId else { return }
+        
+        let isMyMessage = newMessage.sender.participantId == myUserId
+        let msgViewModel = ChatMessageViewModel(message: newMessage, isMyMessage: isMyMessage)
+        messageViewModels.insert(msgViewModel, at: 0)
+        let ip = IndexPath(row: 0, section: 0)
+        tableViewInsertRowsSubject.send([ip])
     }
 }

@@ -20,11 +20,11 @@ class ChatRoom {
 }
 
 extension ChatRoom {
-    static var testRoom: ChatRoom {
+    static let testRoom: ChatRoom = {
         let participants: [ChatParticipant] = [
             ChatParticipant.myParticipant,
             ChatParticipant.otherParticipant
         ]
         return ChatRoom(roomId: UUID().uuidString, participants: participants)
-    }
+    }()
 }

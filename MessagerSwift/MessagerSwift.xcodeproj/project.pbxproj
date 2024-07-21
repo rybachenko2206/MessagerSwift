@@ -104,8 +104,8 @@
 		0524D9AD2C4A8A7000DD8541 /* MessagerSwift */ = {
 			isa = PBXGroup;
 			children = (
-				05FC1C602C4D3ECB00376EFD /* Helpers */,
 				0524D9C32C4AAF7300DD8541 /* App */,
+				05FC1C602C4D3ECB00376EFD /* Helpers */,
 				0524D9C52C4AB29E00DD8541 /* Protocols */,
 				0524D9CA2C4AB39700DD8541 /* Extensions */,
 				05FC1C4A2C4BD5B300376EFD /* Services */,

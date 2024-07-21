@@ -36,20 +36,20 @@
                         <color key="textColor" systemColor="secondaryLabelColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxG-Zo-Mco">
-                        <rect key="frame" x="60" y="8" width="205" height="40"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxG-Zo-Mco" userLabel="BubbleView">
+                        <rect key="frame" x="59.999999999999993" y="8" width="77.333333333333314" height="40"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sXI-0M-uQT">
-                                <rect key="frame" x="20" y="8" width="165" height="24"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sXI-0M-uQT" userLabel="MessageContentView">
+                                <rect key="frame" x="20.000000000000004" y="8" width="37.333333333333343" height="24"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xe-aA-oMy">
-                                        <rect key="frame" x="0.0" y="0.0" width="165" height="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="37.333333333333336" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" name="chatMessageTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="8xe-aA-oMy" firstAttribute="leading" secondItem="sXI-0M-uQT" secondAttribute="leading" id="8F4-nW-wms"/>
                                     <constraint firstAttribute="bottom" secondItem="8xe-aA-oMy" secondAttribute="bottom" id="NwY-vO-Ncz"/>
@@ -67,20 +67,26 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="Pz2-kX-Sxe" firstAttribute="top" secondItem="vxG-Zo-Mco" secondAttribute="bottom" constant="3" id="3mG-uw-wQQ"/>
                     <constraint firstItem="vxG-Zo-Mco" firstAttribute="leading" secondItem="dif-Lg-x7O" secondAttribute="trailing" constant="10" id="Clu-Pp-l2I"/>
                     <constraint firstAttribute="bottom" secondItem="dif-Lg-x7O" secondAttribute="bottom" constant="16" id="JCq-9w-6fC"/>
                     <constraint firstItem="dif-Lg-x7O" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ZtD-KX-EwW"/>
-                    <constraint firstAttribute="trailing" secondItem="vxG-Zo-Mco" secondAttribute="trailing" constant="55" id="gVU-B7-F7g"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vxG-Zo-Mco" secondAttribute="trailing" constant="55" id="gVU-B7-F7g"/>
                     <constraint firstAttribute="bottom" secondItem="Pz2-kX-Sxe" secondAttribute="bottom" constant="2" id="mdf-mJ-CQs"/>
                     <constraint firstItem="Pz2-kX-Sxe" firstAttribute="leading" secondItem="vxG-Zo-Mco" secondAttribute="leading" constant="12" id="nbe-R8-GfZ"/>
                     <constraint firstItem="vxG-Zo-Mco" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="sLK-eq-Rwc"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="avatarImageView" destination="dif-Lg-x7O" id="ZLm-gc-EFe"/>
+                <outlet property="bubbleView" destination="vxG-Zo-Mco" id="wn6-jM-cER"/>
+                <outlet property="dateLabel" destination="Pz2-kX-Sxe" id="eV0-eX-TCg"/>
+                <outlet property="messageContentView" destination="sXI-0M-uQT" id="i4h-Zp-gRP"/>
+                <outlet property="messageLabel" destination="8xe-aA-oMy" id="LVJ-mp-lqi"/>
             </connections>
             <point key="canvasLocation" x="42.748091603053432" y="26.408450704225352"/>
         </tableViewCell>
@@ -95,9 +101,6 @@
         </namedColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

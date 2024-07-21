@@ -29,6 +29,9 @@ class ChatService: PChatService {
     // MARK: - Public funcs
     func sendMessage(_ message: ChatMessage, to roomId: String) {
         // message sends to server part with an API from here
+        
+        newMessageSubject.send(message)
+        
         if messageGeneratorTimer == nil {
             setupFakeMessagesGenerator()
         }

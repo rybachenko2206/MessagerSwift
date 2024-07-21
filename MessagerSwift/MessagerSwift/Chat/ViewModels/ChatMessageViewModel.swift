@@ -12,25 +12,28 @@ protocol PChatMessageViewModel {
     var messageId: String { get }
     var dateString: String? { get }
     var messageType: MessageType { get }
-    var senderAvatarImage: UIImage? { get }
+    var senderAvatarImageUrl: URL? { get }
     var isMyMessage: Bool { get }
 }
 
 class ChatMessageViewModel: PChatMessageViewModel {
     // MARK: - Properties
     private let message: ChatMessage
-    private let myParticipantId: String
+    
+    let isMyMessage: Bool
     
     var messageId: String { message.messageId }
     var dateString: String? { message.createdAt.displayDateString1() }
     var messageType: MessageType { message.messageType }
-    var senderAvatarImage: UIImage? { message.sender.avatarImage }
-    lazy var isMyMessage: Bool = { message.sender.participantId == myParticipantId }()
+    var senderAvatarImageUrl: URL? {
+        guard let urlString = message.sender.avatarImageUrl else { return nil }
+        return URL(string: urlString)
+    }
     
     
     // MARK: - Init
-    init(message: ChatMessage, myParticipantId: String) {
-        self.myParticipantId = myParticipantId
+    init(message: ChatMessage, isMyMessage: Bool) {
         self.message = message
+        self.isMyMessage = isMyMessage
     }
 }

@@ -18,6 +18,7 @@ class ChatMessage {
     let messageId: String
     let sender: ChatParticipant
     let messageType: MessageType
+    let createdAt: Date
     
     var text: String? {
         switch messageType {
@@ -41,6 +42,7 @@ class ChatMessage {
         self.messageId = messageId
         self.sender = sender
         self.messageType = type
+        self.createdAt = Date()
     }
 }
 
@@ -51,7 +53,7 @@ extension ChatMessage {
             "There’s a lot going on", "I must let you go", "It was lovely to see you", "Tell me everything!"
         ]
         
-        let msgIndex: Int = Int(arc4random()) % messagesArray.count - 1
+        let msgIndex: Int = Int.random(in: 1...messagesArray.count - 1)
         let textMsg = messagesArray[msgIndex]
         let msgId = UUID().uuidString
         let msgType = MessageType.text(textMsg)

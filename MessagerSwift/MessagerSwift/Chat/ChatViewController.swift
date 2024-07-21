@@ -24,6 +24,8 @@ class ChatViewController: UIViewController, Storyboardable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        navigationController?.setNavigationBarHidden(true, animated: false)
+        
         setupUI()
         setupNotificationObservers()
         setupBindings()
@@ -32,6 +34,8 @@ class ChatViewController: UIViewController, Storyboardable {
     // MARK: - Private funcs
     private func setupUI() {
         title = "Chat"
+//        view.backgroundColor = UIColor(named: "chatViewBackgroundColor")
+        
         setupTableView()
         setupMessageTextView()
     }
@@ -47,14 +51,21 @@ class ChatViewController: UIViewController, Storyboardable {
     }
     
     private func setupTableView() {
-        tableView.estimatedRowHeight = 0.1
+        tableView.backgroundColor = UIColor(named: "chatViewBackgroundColor")
+        
+        tableView.estimatedRowHeight = 63
         tableView.rowHeight = UITableView.automaticDimension
+        
+        tableView.registerCell(OutgoingMessageCell.self)
+        tableView.registerCell(IncomingMessageCell.self)
         
         tableView.dataSource = self
         
         // added for hiding keyboard by tap on screen
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(tapGestureAction(_:)))
         tableView.addGestureRecognizer(tapGR)
+        
+        tableView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
     }
     
     private func setupNotificationObservers() {
@@ -137,9 +148,18 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
         return viewModel.numberOfItems(in: section)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let messageVM = viewModel.messageViewModel(for: indexPath) else { return UITableViewCell() }
+        guard let cellVM = viewModel.messageViewModel(for: indexPath) else { return UITableViewCell() }
         
-        return UITableViewCell()
+        let messageCell: RootChatMessageCell
+        if cellVM.isMyMessage {
+            messageCell = tableView.dequeueReusableCell(for: indexPath, cellType: OutgoingMessageCell.self)
+        } else {
+            messageCell = tableView.dequeueReusableCell(for: indexPath, cellType: IncomingMessageCell.self)
+        }
+        
+        messageCell.setup(with: cellVM)
+        
+        return messageCell
     }
     
     

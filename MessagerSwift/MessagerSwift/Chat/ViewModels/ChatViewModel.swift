@@ -22,9 +22,10 @@ protocol PChatViewModel {
 class ChatViewModel: PChatViewModel {
     // MARK: Properties
     private let chatService: PChatService
-    
     private let chatRoom: ChatRoom
+    
     private var messageViewModels: [PChatMessageViewModel] = []
+    private var subscriptions: Set<AnyCancellable> =  []
     
     // in real project myUserId would be taken from authorization data
     private var myUserId: String { ChatParticipant.myParticipant.participantId }
@@ -50,6 +51,8 @@ class ChatViewModel: PChatViewModel {
     init(chatRoom: ChatRoom, chatService: PChatService) {
         self.chatRoom = chatRoom
         self.chatService = chatService
+        
+        setupBinings()
     }
     
     // MARK: - Public funcs
@@ -87,5 +90,13 @@ class ChatViewModel: PChatViewModel {
         messageViewModels.insert(msgViewModel, at: 0)
         let ip = IndexPath(row: 0, section: 0)
         tableViewInsertRowsSubject.send([ip])
+    }
+    
+    private func setupBinings() {
+        chatService.newMessagePublisher
+            .sink(receiveValue: { [weak self] newMessage in
+                print("~~new message received: \n\(newMessage), date: \(newMessage.createdAt)")
+            })
+            .store(in: &subscriptions)
     }
 }

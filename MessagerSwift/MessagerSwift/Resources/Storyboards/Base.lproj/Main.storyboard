@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LqG-qu-euf">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="756"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LqG-qu-euf">
+                                <rect key="frame" x="0.0" y="103" width="393" height="653"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5RT-GI-gOM" customClass="SendMessageTextView" customModule="MessagerSwift" customModuleProvider="target">
@@ -31,11 +31,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="LqG-qu-euf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="05s-Et-Lf8"/>
                             <constraint firstItem="LqG-qu-euf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2VE-a7-Cq4"/>
                             <constraint firstItem="5RT-GI-gOM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AyP-Vw-MHp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5RT-GI-gOM" secondAttribute="bottom" id="Mrz-cW-1Ul"/>
                             <constraint firstItem="5RT-GI-gOM" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="b5i-wJ-7nQ"/>
+                            <constraint firstItem="LqG-qu-euf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="eMF-7n-zP1"/>
                             <constraint firstItem="5RT-GI-gOM" firstAttribute="top" secondItem="LqG-qu-euf" secondAttribute="bottom" id="ius-jM-cMP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LqG-qu-euf" secondAttribute="trailing" id="wjm-DT-YBC"/>
                         </constraints>

@@ -72,13 +72,14 @@ class SendMessageTextView: UIView, NibMakable {
     // MARK: - Action funcs
     @IBAction private func sendButtonTapped(_ sender: UIButton) {
         sendMessageCompletion?(messageTextView.text)
+        messageTextView.text = nil
+        updateViewHeight()
     }
 }
 
 extension SendMessageTextView: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         placeholderLabel.isHidden = !textView.text.isEmpty
-        
         updateViewHeight()
     }
 }
@@ -86,6 +87,7 @@ extension SendMessageTextView: UITextViewDelegate {
 // FIXME: delete this extension if it's not used
 extension SendMessageTextView: NSTextStorageDelegate {
     func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorage.EditActions, range editedRange: NSRange, changeInLength delta: Int) {
+//        placeholderLabel.isHidden = !messageTextView.text.isEmpty
 //        updateViewHeight()
     }
 }

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="KGk-i7-Jjw" customClass="OutgoingMessageCell" customModule="MessagerSwift" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDj-2z-TcF">
+                        <rect key="frame" x="244.33333333333334" y="51" width="42.666666666666657" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="SRg-H6-OBr"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TQF-wx-Dt7" userLabel="BubbleView">
+                        <rect key="frame" x="221.66666666666666" y="8" width="77.333333333333343" height="40"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chM-kA-cuz" userLabel="MessageContentView">
+                                <rect key="frame" x="20.000000000000004" y="8" width="37.333333333333343" height="24"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PaZ-Cy-DnW">
+                                        <rect key="frame" x="0.0" y="0.0" width="37.333333333333336" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="6pI-sg-Lxu"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" name="chatMessageTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="PaZ-Cy-DnW" firstAttribute="leading" secondItem="chM-kA-cuz" secondAttribute="leading" id="7KY-R5-0qs"/>
+                                    <constraint firstAttribute="trailing" secondItem="PaZ-Cy-DnW" secondAttribute="trailing" id="bb3-hf-w7P"/>
+                                    <constraint firstItem="PaZ-Cy-DnW" firstAttribute="top" secondItem="chM-kA-cuz" secondAttribute="top" id="m6j-WM-aRj"/>
+                                    <constraint firstAttribute="bottom" secondItem="PaZ-Cy-DnW" secondAttribute="bottom" id="vVE-45-sd5"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" name="outgoingMsgBubbleColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="chM-kA-cuz" secondAttribute="trailing" constant="20" id="428-FU-aGO"/>
+                            <constraint firstAttribute="bottom" secondItem="chM-kA-cuz" secondAttribute="bottom" constant="8" id="5wy-xu-g1E"/>
+                            <constraint firstItem="chM-kA-cuz" firstAttribute="top" secondItem="TQF-wx-Dt7" secondAttribute="top" constant="8" id="6hL-6L-gO1"/>
+                            <constraint firstItem="chM-kA-cuz" firstAttribute="leading" secondItem="TQF-wx-Dt7" secondAttribute="leading" constant="20" id="dSM-B6-V3s"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="TQF-wx-Dt7" secondAttribute="trailing" constant="21" id="6M7-LS-Kuo"/>
+                    <constraint firstItem="vDj-2z-TcF" firstAttribute="top" secondItem="TQF-wx-Dt7" secondAttribute="bottom" constant="3" id="DSV-rG-ZS9"/>
+                    <constraint firstItem="vDj-2z-TcF" firstAttribute="trailing" secondItem="TQF-wx-Dt7" secondAttribute="trailing" constant="-12" id="End-9W-X9B"/>
+                    <constraint firstItem="TQF-wx-Dt7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Qn7-Ik-U5m"/>
+                    <constraint firstItem="TQF-wx-Dt7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="60" id="c86-8R-00c"/>
+                    <constraint firstAttribute="bottom" secondItem="vDj-2z-TcF" secondAttribute="bottom" constant="2" id="iGY-yO-J6q"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="bubbleView" destination="TQF-wx-Dt7" id="dSR-fT-PI2"/>
+                <outlet property="dateLabel" destination="vDj-2z-TcF" id="u59-M2-A9t"/>
+                <outlet property="messageContentView" destination="chM-kA-cuz" id="jnj-UH-UNe"/>
+                <outlet property="messageLabel" destination="PaZ-Cy-DnW" id="qpI-hH-SHG"/>
+            </connections>
+            <point key="canvasLocation" x="131.29770992366412" y="-0.35211267605633806"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="chatMessageTextColor">
+            <color red="0.027450980392156862" green="0.031372549019607843" blue="0.027450980392156862" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="outgoingMsgBubbleColor">
+            <color red="0.85098039215686272" green="0.9882352941176471" blue="0.82352941176470584" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

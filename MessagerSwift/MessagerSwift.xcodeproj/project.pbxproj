@@ -30,6 +30,13 @@
 		05FC1C522C4BD92E00376EFD /* ChatParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC1C512C4BD92E00376EFD /* ChatParticipant.swift */; };
 		05FC1C542C4C4DA300376EFD /* ChatMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC1C532C4C4DA300376EFD /* ChatMessageViewModel.swift */; };
 		05FC1C562C4C52FC00376EFD /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC1C552C4C52FC00376EFD /* String.swift */; };
+		05FC1C5A2C4D2DA400376EFD /* OutgoingMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05FC1C592C4D2DA400376EFD /* OutgoingMessageCell.xib */; };
+		05FC1C5B2C4D2DA400376EFD /* OutgoingMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC1C582C4D2DA400376EFD /* OutgoingMessageCell.swift */; };
+		05FC1C5D2C4D2E5A00376EFD /* RootChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC1C5C2C4D2E5A00376EFD /* RootChatMessageCell.swift */; };
+		05FC1C5F2C4D3E9100376EFD /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC1C5E2C4D3E9100376EFD /* Date.swift */; };
+		05FC1C622C4D3EE400376EFD /* MSDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC1C612C4D3EE400376EFD /* MSDateFormatter.swift */; };
+		05FC1C652C4D426400376EFD /* IncomingMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05FC1C642C4D426400376EFD /* IncomingMessageCell.xib */; };
+		05FC1C662C4D426400376EFD /* IncomingMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC1C632C4D426400376EFD /* IncomingMessageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +65,13 @@
 		05FC1C512C4BD92E00376EFD /* ChatParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatParticipant.swift; sourceTree = "<group>"; };
 		05FC1C532C4C4DA300376EFD /* ChatMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageViewModel.swift; sourceTree = "<group>"; };
 		05FC1C552C4C52FC00376EFD /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		05FC1C582C4D2DA400376EFD /* OutgoingMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessageCell.swift; sourceTree = "<group>"; };
+		05FC1C592C4D2DA400376EFD /* OutgoingMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OutgoingMessageCell.xib; sourceTree = "<group>"; };
+		05FC1C5C2C4D2E5A00376EFD /* RootChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootChatMessageCell.swift; sourceTree = "<group>"; };
+		05FC1C5E2C4D3E9100376EFD /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		05FC1C612C4D3EE400376EFD /* MSDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSDateFormatter.swift; sourceTree = "<group>"; };
+		05FC1C632C4D426400376EFD /* IncomingMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessageCell.swift; sourceTree = "<group>"; };
+		05FC1C642C4D426400376EFD /* IncomingMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncomingMessageCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +104,7 @@
 		0524D9AD2C4A8A7000DD8541 /* MessagerSwift */ = {
 			isa = PBXGroup;
 			children = (
+				05FC1C602C4D3ECB00376EFD /* Helpers */,
 				0524D9C32C4AAF7300DD8541 /* App */,
 				0524D9C52C4AB29E00DD8541 /* Protocols */,
 				0524D9CA2C4AB39700DD8541 /* Extensions */,
@@ -123,8 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				0524D9B22C4A8A7000DD8541 /* ChatViewController.swift */,
-				0524D9D72C4ABF1000DD8541 /* ViewModels */,
 				0524D9D62C4ABF0000DD8541 /* Models */,
+				0524D9D72C4ABF1000DD8541 /* ViewModels */,
 				0524D9D52C4ABED800DD8541 /* CustomViews */,
 			);
 			path = Chat;
@@ -149,6 +164,7 @@
 				0524D9E92C4AF76500DD8541 /* UIDevice.swift */,
 				0524D9D32C4ABD9500DD8541 /* Array.swift */,
 				05FC1C552C4C52FC00376EFD /* String.swift */,
+				05FC1C5E2C4D3E9100376EFD /* Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -173,6 +189,7 @@
 		0524D9D52C4ABED800DD8541 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				05FC1C572C4D2D6300376EFD /* TableViewCells */,
 				0524D9DD2C4ACBF400DD8541 /* SendMessageTextView.swift */,
 				0524D9E12C4AD03E00DD8541 /* SendMessageTextView.xib */,
 			);
@@ -204,6 +221,26 @@
 				05FC1C4D2C4BD64200376EFD /* ChatService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		05FC1C572C4D2D6300376EFD /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				05FC1C5C2C4D2E5A00376EFD /* RootChatMessageCell.swift */,
+				05FC1C582C4D2DA400376EFD /* OutgoingMessageCell.swift */,
+				05FC1C592C4D2DA400376EFD /* OutgoingMessageCell.xib */,
+				05FC1C632C4D426400376EFD /* IncomingMessageCell.swift */,
+				05FC1C642C4D426400376EFD /* IncomingMessageCell.xib */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		05FC1C602C4D3ECB00376EFD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				05FC1C612C4D3EE400376EFD /* MSDateFormatter.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,8 +302,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0524D9B82C4A8A7200DD8541 /* Assets.xcassets in Resources */,
+				05FC1C652C4D426400376EFD /* IncomingMessageCell.xib in Resources */,
 				0524D9BB2C4A8A7200DD8541 /* Base in Resources */,
 				0524D9E22C4AD03E00DD8541 /* SendMessageTextView.xib in Resources */,
+				05FC1C5A2C4D2DA400376EFD /* OutgoingMessageCell.xib in Resources */,
 				0524D9B62C4A8A7000DD8541 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,18 +322,23 @@
 				0524D9CC2C4AB68500DD8541 /* UICollectionView.swift in Sources */,
 				0524D9E82C4AF3CF00DD8541 /* Storyboardable.swift in Sources */,
 				0524D9D22C4ABD1300DD8541 /* ChatMessage.swift in Sources */,
+				05FC1C5B2C4D2DA400376EFD /* OutgoingMessageCell.swift in Sources */,
 				0524D9D02C4ABC9100DD8541 /* ChatViewModel.swift in Sources */,
 				0524D9E02C4ACE9900DD8541 /* UIView.swift in Sources */,
 				05FC1C522C4BD92E00376EFD /* ChatParticipant.swift in Sources */,
+				05FC1C622C4D3EE400376EFD /* MSDateFormatter.swift in Sources */,
 				0524D9C72C4AB2D500DD8541 /* ReusableCell.swift in Sources */,
 				05FC1C542C4C4DA300376EFD /* ChatMessageViewModel.swift in Sources */,
 				0524D9B32C4A8A7000DD8541 /* ChatViewController.swift in Sources */,
+				05FC1C5D2C4D2E5A00376EFD /* RootChatMessageCell.swift in Sources */,
 				05FC1C4E2C4BD64200376EFD /* ChatService.swift in Sources */,
 				0524D9AF2C4A8A7000DD8541 /* AppDelegate.swift in Sources */,
 				0524D9DB2C4AC83300DD8541 /* UITableView.swift in Sources */,
 				05FC1C502C4BD89D00376EFD /* ChatRoom.swift in Sources */,
 				0524D9DE2C4ACBF400DD8541 /* SendMessageTextView.swift in Sources */,
 				0524D9C92C4AB35600DD8541 /* NibMakable.swift in Sources */,
+				05FC1C5F2C4D3E9100376EFD /* Date.swift in Sources */,
+				05FC1C662C4D426400376EFD /* IncomingMessageCell.swift in Sources */,
 				0524D9B12C4A8A7000DD8541 /* SceneDelegate.swift in Sources */,
 				0524D9EA2C4AF76500DD8541 /* UIDevice.swift in Sources */,
 			);

@@ -13,7 +13,10 @@ protocol PChatMessageViewModel {
     var dateString: String? { get }
     var messageType: MessageType { get }
     var senderAvatarImageUrl: URL? { get }
+    var placeholderImage: UIImage? { get }
     var isMyMessage: Bool { get }
+    
+    func possibleMenuActionsTypes() -> [ChatMessageActionType]?
 }
 
 class ChatMessageViewModel: PChatMessageViewModel {
@@ -30,10 +33,36 @@ class ChatMessageViewModel: PChatMessageViewModel {
         return URL(string: urlString)
     }
     
+    let placeholderImage: UIImage? = UIImage(systemName: "person.circle.fill")
+    
     
     // MARK: - Init
     init(message: ChatMessage, isMyMessage: Bool) {
         self.message = message
         self.isMyMessage = isMyMessage
+    }
+    
+    // MARK: - Public funcs
+    func possibleMenuActionsTypes() -> [ChatMessageActionType]? {
+        var actionTypes: [ChatMessageActionType] = []
+        
+        switch messageType {
+        case .text(_):
+            actionTypes = [.copy, .listen]
+            if isMyMessage {
+                actionTypes.append(.edit)
+            }
+            
+        case .images(_):
+            actionTypes = [.saveImage]
+        }
+        
+        if isMyMessage {
+            actionTypes.append(.delete)
+        } else {
+            actionTypes.append(.reply)
+        }
+        
+        return actionTypes
     }
 }

@@ -42,7 +42,7 @@ class ChatService: PChatService {
         var nextMessageDate: Date?
         messageGeneratorTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] timer in
             if nextMessageDate == nil {
-                let randSeconds = TimeInterval(Int.random(in: 1..<8))
+                let randSeconds = TimeInterval(Int.random(in: 3..<10))
                 nextMessageDate = Date().addingTimeInterval(randSeconds)
             }
             

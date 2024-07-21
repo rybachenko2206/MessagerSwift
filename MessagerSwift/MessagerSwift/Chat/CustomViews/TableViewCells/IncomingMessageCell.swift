@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class IncomingMessageCell: RootChatMessageCell {
     // MARK: - Outlets
@@ -28,6 +29,6 @@ class IncomingMessageCell: RootChatMessageCell {
     override func setup(with viewModel: PChatMessageViewModel) {
         super.setup(with: viewModel)
         
-        avatarImageView.image = viewModel.senderAvatarImage
+        avatarImageView.kf.setImage(with: viewModel.senderAvatarImageUrl, placeholder: viewModel.placeholderImage)
     }
 }

@@ -16,15 +16,15 @@ class ChatViewController: UIViewController, Storyboardable {
     @IBOutlet private weak var messageTextViewBottomConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
+    private lazy var speechUtil = TextToSpeechUtility()
     private var subscriptions: Set<AnyCancellable> = []
+    
     static var storyboardName: Storyboard = .main
     var viewModel: PChatViewModel!
 
     // MARK: - Override funcs
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        navigationController?.setNavigationBarHidden(true, animated: false)
         
         setupUI()
         setupNotificationObservers()
@@ -105,6 +105,78 @@ class ChatViewController: UIViewController, Storyboardable {
         tableView.endUpdates()
     }
     
+    private func addCompletion(to messageCell: RootChatMessageCell) {
+        messageCell.menuActionCompletion = { [weak self] action, cellViewModel in
+            self?.handleMenuAction(action, for: cellViewModel)
+        }
+    }
+    
+    private func handleMenuAction(_ action: ChatMessageActionType, for messageViewModel: PChatMessageViewModel) {
+        switch action {
+        case .copy:
+            copyMessageToClipboard(messageViewModel)
+        case .listen:
+            handleListenAction(for: messageViewModel)
+        case .delete:
+            viewModel.deleteOutgoingMessage(messageViewModel)
+        case .saveImage:
+            saveToPhotoLibraryImage(from: messageViewModel)
+        case .reply,
+                .edit,
+                .cancelSending,
+                .trySendAgain:
+            print("\(action.title) menu action selected")
+            AlertsManager.showFeatureInDevelopment(to: self)
+        }
+    }
+    
+    private func copyMessageToClipboard(_ messageViewModel: PChatMessageViewModel) {
+        switch messageViewModel.messageType {
+        case .text(let text):
+            UIPasteboard.general.string = text
+            // show notification view with text "Copied!"
+        default:
+            break
+        }
+    }
+    
+    private func saveToPhotoLibraryImage(from messageViewModel: PChatMessageViewModel) {
+        switch messageViewModel.messageType {
+        case .images(let imagesArray):
+            guard let image = imagesArray.first else { return }
+            UIImageWriteToSavedPhotosAlbum(
+                image,
+                self,
+                #selector(image(_:didFinishSavingWithError:contextInfo:)),
+                nil
+            )
+        default:
+            break
+        }
+    }
+    
+    @objc private func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            // we got back an error!
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Saved!", message: "This Image has been saved to your photos.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }
+    }
+    
+    private func handleListenAction(for messageViewModel: PChatMessageViewModel) {
+        switch messageViewModel.messageType {
+        case .text(let string):
+            speechUtil.synthesizeSpeech(forText: string)
+        default:
+            break
+        }
+    }
+    
     // MARK: - Notification Observers
     @objc private func keyboardWillShowNotification(_ notification: Notification) {
         let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0.3
@@ -158,6 +230,7 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         messageCell.setup(with: cellVM)
+        addCompletion(to: messageCell)
         
         return messageCell
     }

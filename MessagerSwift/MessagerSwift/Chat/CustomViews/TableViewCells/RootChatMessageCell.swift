@@ -20,13 +20,18 @@ class RootChatMessageCell: UITableViewCell, ReusableCell {
     private var viewModel: PChatMessageViewModel?
     private var customViewConstraints: [NSLayoutConstraint]?
     
+    var menuActionCompletion: ((ChatMessageActionType, PChatMessageViewModel) -> Void)?
+    
     // MARK: - Override funcs
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        contentView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+        
         bubbleView.setCornerRadius(Constants.bubbleViewCornerRadius)
         
-        contentView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+        let contextMenuInteraction = UIContextMenuInteraction(delegate: self)
+        bubbleView.addInteraction(contextMenuInteraction)
     }
 
     override func prepareForReuse() {
@@ -56,6 +61,24 @@ class RootChatMessageCell: UITableViewCell, ReusableCell {
     private func deactivateCustomViewConstraints() {
         customViewConstraints?.forEach({ $0.isActive = false })
         customViewConstraints = nil
+    }
+    
+    private func menuElements(for actionTypes:[ChatMessageActionType]) -> [UIMenuElement] {
+        let handler: UIActionHandler = { [weak self] action in
+            guard let action = ChatMessageActionType(rawValue: action.identifier.rawValue),
+                  let cellVm = self?.viewModel
+            else { return }
+            
+            self?.menuActionCompletion?(action, cellVm)
+        }
+        
+        return actionTypes.map({
+            UIAction(title: $0.title,
+                     image: $0.icon,
+                     identifier: .init($0.rawValue),
+                     attributes: $0.attribute ?? [],
+                     handler: handler)
+        })
     }
     
     private func setImages(_ images: [UIImage]?) {
@@ -111,5 +134,30 @@ extension RootChatMessageCell {
         static let fileBubbleViewCornerRadius: CGFloat = 10
         static let textContentViewInsets = UIEdgeInsets(top: 8, left: 20, bottom: 11, right: 20)
         static let imageContentViewInsets = UIEdgeInsets(top: 0, left: 3, bottom: 3, right: 3)
+    }
+}
+
+// MARK: - UIContextMenuInteractionDelegate
+extension RootChatMessageCell: UIContextMenuInteractionDelegate {
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        guard let actionTypes = viewModel?.possibleMenuActionsTypes(), !actionTypes.isEmpty else { return nil }
+        
+        let menuElements = self.menuElements(for: actionTypes)
+        let menu = UIMenu(children: menuElements)
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { _ in
+            return menu
+        })
+    }
+    
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willDisplayMenuFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+        self.endEditing(true)
+    }
+    
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForHighlightingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        let parameters = UIPreviewParameters()
+        parameters.backgroundColor = .clear
+        
+        let targetPreview = UITargetedPreview(view: bubbleView, parameters: parameters)
+        return targetPreview
     }
 }

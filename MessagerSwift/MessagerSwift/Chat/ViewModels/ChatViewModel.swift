@@ -17,6 +17,7 @@ protocol PChatViewModel {
     func messageViewModel(for indexPath: IndexPath) -> PChatMessageViewModel?
     
     func sendNewTextMessage(_ message: String?)
+    func deleteOutgoingMessage(_ messageViewModel: PChatMessageViewModel)
 }
 
 class ChatViewModel: PChatViewModel {
@@ -88,6 +89,16 @@ class ChatViewModel: PChatViewModel {
         chatService.sendMessage(chatMessage, to: chatRoom.roomId)
     }
     
+    func deleteOutgoingMessage(_ messageViewModel: PChatMessageViewModel) {
+        guard let index = messageViewModels.firstIndex(where: { $0.messageId == messageViewModel.messageId })
+        else { return }
+        
+        messageViewModels.remove(at: index)
+        let ipToDelete = IndexPath(row: index, section: 0)
+        tableViewDeleteRowSubject.send(ipToDelete)
+    }
+    
+    // MARK: - Private funcs
     private func setupBinings() {
         chatService.newMessagePublisher
             .sink(receiveValue: { [weak self] newMessage in

@@ -86,11 +86,3 @@ extension SendMessageTextView: UITextViewDelegate {
         updateViewHeight()
     }
 }
-
-// FIXME: delete this extension if it's not used
-extension SendMessageTextView: NSTextStorageDelegate {
-    func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorage.EditActions, range editedRange: NSRange, changeInLength delta: Int) {
-//        placeholderLabel.isHidden = !messageTextView.text.isEmpty
-//        updateViewHeight()
-    }
-}

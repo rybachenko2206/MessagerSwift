@@ -69,7 +69,6 @@ class RootChatMessageCell: UITableViewCell, ReusableCell {
     private func deactivateCustomViewConstraints() {
         customViewConstraints?.forEach({ $0.isActive = false })
         customViewConstraints = nil
-        
     }
     
     private func menuElements(for actionTypes:[ChatMessageActionType]) -> [UIMenuElement] {

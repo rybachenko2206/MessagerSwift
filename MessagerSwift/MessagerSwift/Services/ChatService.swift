@@ -33,7 +33,8 @@ class ChatService: PChatService {
         newMessageSubject.send(message)
         
         if messageGeneratorTimer == nil {
-            setupFakeMessagesGenerator()
+            // TODO: uncomment this row
+//            setupFakeMessagesGenerator()
         }
     }
     

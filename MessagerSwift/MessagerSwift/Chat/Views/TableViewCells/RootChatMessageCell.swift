@@ -9,13 +9,18 @@ import UIKit
 
 class RootChatMessageCell: UITableViewCell, ReusableCell {
     // MARK: - Outlets
-    @IBOutlet weak var bubbleView: UIView!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet private weak var bubbleView: UIView!
+    @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var messageContentView: UIView!
     
+    @IBOutlet private weak var msgContentViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var msgContentViewRightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var msgContentViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var msgContentViewLeftConstraint: NSLayoutConstraint!
+    
     private weak var messageView: UIView?
-
+    private weak var carouselView: ImagesCarouselView?
     // MARK: - Properties
     private var viewModel: PChatMessageViewModel?
     private var customViewConstraints: [NSLayoutConstraint]?
@@ -39,6 +44,7 @@ class RootChatMessageCell: UITableViewCell, ReusableCell {
         
         messageLabel.text = nil
         dateLabel.text = nil
+        carouselView?.removeFromSuperview()
         deactivateCustomViewConstraints()
     }
     
@@ -52,15 +58,18 @@ class RootChatMessageCell: UITableViewCell, ReusableCell {
         case .text(let textMessage):
             messageLabel.text = textMessage
         case .images(let imagesArray):
-            // TODO: showing images will be implemented later
-            break
+            messageLabel.text = nil
+            setImages(imagesArray)
         }
+        
+        updateContentViewEdgeConstraints(for: viewModel.messageType)
     }
     
     // MARK: - Private funcs
     private func deactivateCustomViewConstraints() {
         customViewConstraints?.forEach({ $0.isActive = false })
         customViewConstraints = nil
+        
     }
     
     private func menuElements(for actionTypes:[ChatMessageActionType]) -> [UIMenuElement] {
@@ -82,58 +91,57 @@ class RootChatMessageCell: UITableViewCell, ReusableCell {
     }
     
     private func setImages(_ images: [UIImage]?) {
-        guard let images = images else { return }
+        guard let carouselViewModel = viewModel?.carouselImageView else { return }
         
-        assertionFailure("owerwrite implementation to show several images")
-//        let imgView = UIImageView(frame: .zero)
-//        imgView.translatesAutoresizingMaskIntoConstraints = false
-//        imgView.contentMode = .scaleAspectFill
-//        imgView.setCornerRadius(Constants.messageImageViewCornerRadius)
-//        imgView.image = image
-//        messageContentView.addSubview(imgView)
-//        messageImageView = imgView
-//        
-//        
-//        let size: CGSize
-//        
-//        let isWide = image.size.width >= image.size.height
-//        
-//        let maxWidth = UIScreen.main.bounds.width - 130
-//        let maxHeight = maxWidth + (maxWidth * 0.26)
-//        
-//        if isWide {
-//            let ratio = image.size.height / image.size.width
-//            let height = maxWidth * ratio
-//            size = CGSize(width: maxWidth, height: height)
-//        } else {
-//            let ratio = image.size.width / image.size.height
-//            let width = maxHeight * ratio
-//            size = CGSize(width: width, height: maxHeight)
-//        }
-//        
-//        
-//        let constraints: [NSLayoutConstraint] = [
-//            imgView.topAnchor.constraint(equalTo: messageContentView.topAnchor),
-//            imgView.trailingAnchor.constraint(equalTo: messageContentView.trailingAnchor),
-//            imgView.bottomAnchor.constraint(equalTo: messageContentView.bottomAnchor),
-//            imgView.leadingAnchor.constraint(equalTo: messageContentView.leadingAnchor),
-//            imgView.widthAnchor.constraint(equalToConstant: size.width),
-//            imgView.heightAnchor.constraint(equalToConstant: size.height)
-//        ]
-//        
-//        NSLayoutConstraint.activate(constraints)
-//        customViewConstraints = constraints
-//        messageContentView.layoutIfNeeded()
+        let carouselView = ImagesCarouselView(frame: .zero)
+        carouselView.translatesAutoresizingMaskIntoConstraints = false
+        carouselView.setCornerRadius(Constants.imagesCarouselViewCornerRadius)
+        carouselView.setup(with: carouselViewModel)
+        messageContentView.addSubview(carouselView)
+        self.carouselView = carouselView
+        
+        let width = UIScreen.main.bounds.width - 140
+        let height = width * 0.75
+        let size = CGSize(width: width, height: height)
+        
+        let constraints: [NSLayoutConstraint] = [
+            carouselView.topAnchor.constraint(equalTo: messageContentView.topAnchor),
+            carouselView.trailingAnchor.constraint(equalTo: messageContentView.trailingAnchor),
+            carouselView.bottomAnchor.constraint(equalTo: messageContentView.bottomAnchor),
+            carouselView.leadingAnchor.constraint(equalTo: messageContentView.leadingAnchor),
+            carouselView.widthAnchor.constraint(equalToConstant: size.width),
+            carouselView.heightAnchor.constraint(equalToConstant: size.height)
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+        customViewConstraints = constraints
+        messageContentView.layoutIfNeeded()
+    }
+    
+    private func updateContentViewEdgeConstraints(for messageType: MessageType) {
+        let insets: UIEdgeInsets
+        
+        switch messageType {
+        case .text:
+            insets = Constants.textContentViewInsets
+        case .images:
+            insets = Constants.imageContentViewInsets
+        }
+        
+        msgContentViewTopConstraint.constant = insets.top
+        msgContentViewRightConstraint.constant = insets.right
+        msgContentViewBottomConstraint.constant = insets.bottom
+        msgContentViewLeftConstraint.constant = insets.left
     }
 }
 
 extension RootChatMessageCell {
     private struct Constants {
         static let bubbleViewCornerRadius: CGFloat = 12
-        static let messageImageViewCornerRadius: CGFloat = 18
+        static let imagesCarouselViewCornerRadius: CGFloat = 10.5
         static let fileBubbleViewCornerRadius: CGFloat = 10
         static let textContentViewInsets = UIEdgeInsets(top: 8, left: 20, bottom: 11, right: 20)
-        static let imageContentViewInsets = UIEdgeInsets(top: 0, left: 3, bottom: 3, right: 3)
+        static let imageContentViewInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
     }
 }
 

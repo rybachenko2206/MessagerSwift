@@ -87,6 +87,10 @@
                 <outlet property="dateLabel" destination="Pz2-kX-Sxe" id="eV0-eX-TCg"/>
                 <outlet property="messageContentView" destination="sXI-0M-uQT" id="i4h-Zp-gRP"/>
                 <outlet property="messageLabel" destination="8xe-aA-oMy" id="LVJ-mp-lqi"/>
+                <outlet property="msgContentViewBottomConstraint" destination="kMs-YF-2cV" id="RFQ-hW-EQU"/>
+                <outlet property="msgContentViewLeftConstraint" destination="IyE-QC-WcT" id="Hgw-SV-liJ"/>
+                <outlet property="msgContentViewRightConstraint" destination="DRE-K0-ofi" id="kbh-G5-AbV"/>
+                <outlet property="msgContentViewTopConstraint" destination="4T2-LH-2Dv" id="cRd-XX-3IH"/>
             </connections>
             <point key="canvasLocation" x="42.748091603053432" y="26.408450704225352"/>
         </tableViewCell>

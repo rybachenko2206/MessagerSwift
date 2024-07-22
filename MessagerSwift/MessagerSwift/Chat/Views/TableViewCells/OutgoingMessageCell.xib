@@ -78,6 +78,10 @@
                 <outlet property="dateLabel" destination="vDj-2z-TcF" id="u59-M2-A9t"/>
                 <outlet property="messageContentView" destination="chM-kA-cuz" id="jnj-UH-UNe"/>
                 <outlet property="messageLabel" destination="PaZ-Cy-DnW" id="qpI-hH-SHG"/>
+                <outlet property="msgContentViewBottomConstraint" destination="5wy-xu-g1E" id="YeR-cH-uLl"/>
+                <outlet property="msgContentViewLeftConstraint" destination="dSM-B6-V3s" id="SK1-qO-fdm"/>
+                <outlet property="msgContentViewRightConstraint" destination="428-FU-aGO" id="IaR-lv-nmt"/>
+                <outlet property="msgContentViewTopConstraint" destination="6hL-6L-gO1" id="nSj-AK-36w"/>
             </connections>
             <point key="canvasLocation" x="131.29770992366412" y="-0.35211267605633806"/>
         </tableViewCell>

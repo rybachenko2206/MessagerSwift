@@ -8,10 +8,14 @@
 import UIKit
 
 class PhotoCollectionViewCell: UICollectionViewCell, ReusableCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    // MARK: - Outtlets
+    @IBOutlet weak var imageView: UIImageView!
+    
+    // MARK: - Override funcs
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        imageView.image = nil
     }
-
 }

@@ -16,7 +16,7 @@ class ChatViewController: UIViewController, Storyboardable {
     @IBOutlet private weak var messageTextViewBottomConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
-    private let imagePickerManager = ImagePickerManager()
+    private var imagePickerManager: ImagePickerManager?
     private lazy var speechUtil = TextToSpeechUtility()
     private var subscriptions: Set<AnyCancellable> = []
     
@@ -49,7 +49,9 @@ class ChatViewController: UIViewController, Storyboardable {
         
         messageTextView.sendFileCompletion = { [weak self] in
             guard let self else { return }
-            self.imagePickerManager.addPHPicker(to: self)
+            self.imagePickerManager = ImagePickerManager()
+            self.imagePickerManager?.addPHPicker(to: self)
+            self.imagePickerManager?.delegate = self
         }
         
         messageTextView.viewHeightChangedCompletion = { [weak self] height in

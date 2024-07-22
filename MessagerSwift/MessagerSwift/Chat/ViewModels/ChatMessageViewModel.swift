@@ -15,6 +15,7 @@ protocol PChatMessageViewModel {
     var senderAvatarImageUrl: URL? { get }
     var placeholderImage: UIImage? { get }
     var isMyMessage: Bool { get }
+    var carouselImageView: PImagesCarouselViewModel? { get }
     
     func possibleMenuActionsTypes() -> [ChatMessageActionType]?
 }
@@ -24,6 +25,7 @@ class ChatMessageViewModel: PChatMessageViewModel {
     private let message: ChatMessage
     
     let isMyMessage: Bool
+    let placeholderImage: UIImage? = UIImage(systemName: "person.circle.fill")
     
     var messageId: String { message.messageId }
     var dateString: String? { message.createdAt.displayDateString1() }
@@ -33,8 +35,15 @@ class ChatMessageViewModel: PChatMessageViewModel {
         return URL(string: urlString)
     }
     
-    let placeholderImage: UIImage? = UIImage(systemName: "person.circle.fill")
-    
+    lazy var carouselImageView: PImagesCarouselViewModel? = {
+        switch messageType {
+        case .images(let imagesArray):
+            guard !imagesArray.isEmpty else { return nil }
+            return ImagesCarouselViewModel(images: imagesArray)
+        default:
+            return nil
+        }
+    }()
     
     // MARK: - Init
     init(message: ChatMessage, isMyMessage: Bool) {

@@ -9,15 +9,30 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PhotoCollectionViewCell" customModule="MessagerSwift" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="gTV-IL-0wX" customClass="PhotoCollectionViewCell" customModule="MessagerSwift" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="266" height="164"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="266" height="164"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vay-uY-En8">
+                        <rect key="frame" x="0.0" y="0.0" width="266" height="164"/>
+                    </imageView>
+                </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Vay-uY-En8" secondAttribute="bottom" id="Ga8-jS-VsB"/>
+                <constraint firstItem="Vay-uY-En8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Yea-Uh-8d0"/>
+                <constraint firstItem="Vay-uY-En8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="fNk-GG-MUU"/>
+                <constraint firstAttribute="trailing" secondItem="Vay-uY-En8" secondAttribute="trailing" id="jWt-2q-7qT"/>
+            </constraints>
             <size key="customSize" width="266" height="164"/>
+            <connections>
+                <outlet property="imageView" destination="Vay-uY-En8" id="51P-hD-5ak"/>
+            </connections>
             <point key="canvasLocation" x="143.5114503816794" y="59.859154929577471"/>
         </collectionViewCell>
     </objects>

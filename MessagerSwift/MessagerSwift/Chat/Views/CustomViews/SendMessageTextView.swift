@@ -17,8 +17,6 @@ class SendMessageTextView: UIView, NibMakable {
     @IBOutlet private weak var sendMessageButton: UIButton!
     @IBOutlet private weak var sendImagesButton: UIButton!
     
-//    @IBOutlet private weak var textViewHeightConstraint: NSLayoutConstraint!
-    
     // MARK: - Properties
     var contentView: UIView? { view }
     

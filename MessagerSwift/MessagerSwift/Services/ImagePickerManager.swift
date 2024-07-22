@@ -60,7 +60,6 @@ extension ImagePickerManager: PHPickerViewControllerDelegate {
                     // here could be problems with incorrect image orientation
                     // it doesn't needed for testing using iPhone simulator
                     // but it's helpful for images from real device gallery.
-                    print("selected image orientation: \(image.imageOrientation)")
                     let radians = UIImage.deg2rad(360)
                     if let rotatedImage = image.rotate(radians: radians) {
                         selectedImages.append(rotatedImage)

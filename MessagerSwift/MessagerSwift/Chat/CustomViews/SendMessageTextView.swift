@@ -26,6 +26,7 @@ class SendMessageTextView: UIView, NibMakable {
     private let minTextViewHeight: CGFloat = 20
     
     var sendMessageCompletion: ((String?) -> Void)?
+    var sendFileCompletion: Completion?
     var viewHeightChangedCompletion: ((CGFloat) -> Void)?
     
     // MARK: - Init
@@ -74,6 +75,10 @@ class SendMessageTextView: UIView, NibMakable {
         sendMessageCompletion?(messageTextView.text)
         messageTextView.text = nil
         updateViewHeight()
+    }
+    
+    @IBAction private func sendFileButtonTapped(_ sender: UIButton) {
+        sendFileCompletion?()
     }
 }
 

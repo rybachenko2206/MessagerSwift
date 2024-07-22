@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 import Combine
 
 protocol PChatViewModel {
@@ -16,7 +17,7 @@ protocol PChatViewModel {
     func numberOfItems(in section: Int) -> Int
     func messageViewModel(for indexPath: IndexPath) -> PChatMessageViewModel?
     
-    func sendNewTextMessage(_ message: String?)
+    func sendNewMessage(_ messageType: MessageType)
     func deleteOutgoingMessage(_ messageViewModel: PChatMessageViewModel)
 }
 
@@ -69,16 +70,12 @@ class ChatViewModel: PChatViewModel {
         messageViewModels[safe: indexPath.row]
     }
     
-    func sendNewTextMessage(_ message: String?) {
+    func sendNewMessage(_ messageType: MessageType) {
         guard let myParticipant else {
             assertionFailure()
             return
         }
         
-        guard let message, !message.isBlank else { return }
-        let trimmedText = message.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        let messageType = MessageType.text(trimmedText)
         let chatMessage = ChatMessage(
             roomId: chatRoom.roomId,
             messageId: UUID().uuidString,

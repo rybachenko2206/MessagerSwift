@@ -10,7 +10,7 @@ import UIKit
 import PhotosUI
 
 protocol ImagePickerManagerDelegate: AnyObject {
-    func imagePickerDidChooseImage(_ image: UIImage)
+    func imagePickerDidChooseImages(_ images: [UIImage])
     func imagePickerDidChooseVideo(at url: URL)
     func imagePickerDidReceiveError(_ error: Error)
 }
@@ -48,47 +48,32 @@ extension ImagePickerManager: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
         
-        guard let result = results.first else { return }
+        let itemProviders = results.map({ $0.itemProvider })
         
-        let provider = result.itemProvider
+        let dispatchGroup: DispatchGroup = DispatchGroup()
+        var selectedImages: [UIImage] = []
         
-        if provider.canLoadObject(ofClass: UIImage.self) {
+        for provider in itemProviders {
+            dispatchGroup.enter()
             provider.loadObject(ofClass: UIImage.self) { (value, error) in
-                DispatchQueue.main.async { [weak self] in
-                    guard let image = value as? UIImage else {
-                        if let error = error {
-                            self?.delegate?.imagePickerDidReceiveError(MSError(error: error))
-                        } else {
-                            let ccError = MSError.custom("PHPicker load image is nil without any errors.")
-                            self?.delegate?.imagePickerDidReceiveError(ccError)
-                        }
-                        return
-                    }
+                if let image = value as? UIImage {
+                    // here could be problems with incorrect image orientation
+                    // it doesn't needed for testing using iPhone simulator
+                    // but it's helpful for images from real device gallery.
                     print("selected image orientation: \(image.imageOrientation)")
                     let radians = UIImage.deg2rad(360)
-                    guard let rotatedImage = image.rotate(radians: radians) else {
-                        let ccError = MSError.custom("rotate image error")
-                        self?.delegate?.imagePickerDidReceiveError(ccError)
-                        return
+                    if let rotatedImage = image.rotate(radians: radians) {
+                        selectedImages.append(rotatedImage)
                     }
-                    self?.delegate?.imagePickerDidChooseImage(rotatedImage)
+                    
                 }
+                dispatchGroup.leave()
             }
-            
-        } else if provider.hasItemConformingToTypeIdentifier(UTType.png.identifier) {
-            provider.loadItem(forTypeIdentifier: UTType.png.identifier) { url, error in
-                print("png image url: \n\(String(describing: url))")
-                assertionFailure("handle this case")
-            }
-        } else if provider.hasItemConformingToTypeIdentifier(UTType.jpeg.identifier) {
-            provider.loadItem(forTypeIdentifier: UTType.jpeg.identifier) { url, error in
-                print("jpeg image url: \n\(String(describing: url))")
-                assertionFailure("handle this case")
-            }
-        } else {
-            print("provider.registeredContentTypes: \(provider.registeredContentTypes)")
-            assertionFailure("handle this case")
         }
+        
+        dispatchGroup.notify(queue: .main, execute: { [weak self] in
+            self?.delegate?.imagePickerDidChooseImages(selectedImages)
+        })
     }
 }
 

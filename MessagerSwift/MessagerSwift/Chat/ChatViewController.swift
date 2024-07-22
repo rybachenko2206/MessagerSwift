@@ -16,6 +16,7 @@ class ChatViewController: UIViewController, Storyboardable {
     @IBOutlet private weak var messageTextViewBottomConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
+    private let imagePickerManager = ImagePickerManager()
     private lazy var speechUtil = TextToSpeechUtility()
     private var subscriptions: Set<AnyCancellable> = []
     
@@ -34,7 +35,6 @@ class ChatViewController: UIViewController, Storyboardable {
     // MARK: - Private funcs
     private func setupUI() {
         title = "Chat"
-//        view.backgroundColor = UIColor(named: "chatViewBackgroundColor")
         
         setupTableView()
         setupMessageTextView()
@@ -42,7 +42,14 @@ class ChatViewController: UIViewController, Storyboardable {
     
     private func setupMessageTextView() {
         messageTextView.sendMessageCompletion = { [weak self] message in
-            self?.viewModel.sendNewTextMessage(message)
+            guard let message, !message.isBlank else { return }
+            let trimmedText = message.trimmingCharacters(in: .whitespacesAndNewlines)
+            self?.viewModel.sendNewMessage(.text(trimmedText))
+        }
+        
+        messageTextView.sendFileCompletion = { [weak self] in
+            guard let self else { return }
+            self.imagePickerManager.addPHPicker(to: self)
         }
         
         messageTextView.viewHeightChangedCompletion = { [weak self] height in
@@ -234,6 +241,15 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
         
         return messageCell
     }
-    
+
+}
+
+
+// MARK: - ImagePickerManagerDelegate
+extension ChatViewController: ImagePickerManagerDelegate {
+    func imagePickerDidChooseImages(_ images: [UIImage]) {
+        guard !images.isEmpty else { return }
+        viewModel.sendNewMessage(.images(images))
+    }
     
 }
